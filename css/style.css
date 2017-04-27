@@ -1,0 +1,1564 @@
+/*
+  This file is the main file for styling the content of the entire site.
+ */
+
+/*
+  The following are keyframes that are utilized by different elements within the site, it offers: 
+    - Effects for a nice translation effect
+    - Effects for fading in items by changing their opacity to max
+    - Effects for zooming in an item from normal scale to a larger scale
+ */
+
+@keyframes movedown {
+  0%  { opacity: 0;
+        transform: translate3d(0px, -200px, 0px);
+        animation-timing-function: ease-in;}
+  100% {opacity: 1;
+        transform: translate3d(0px, -10px, 0px);
+        animation-timing-function: ease-in;}
+}
+
+@keyframes moveup {
+  0%  { opacity: 0;
+        transform: translate3d(0px, 200px, 0px);
+        animation-timing-function: ease-in;}
+  100% {opacity: 1;
+        transform: translate3d(0px, 10px, 0px);
+        animation-timing-function: ease-in;}
+}
+
+@keyframes fdsseq { 
+  100% { 
+    opacity: 1; 
+  }
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/*
+  Here all the tags are being declared, setting default values so changes are easy to maintain later
+ */
+
+h1 {
+  font-family: 'MicroExtendFLF-Bold';
+}
+
+h2, h3, p, a {
+  font-family: 'FeaturedItem';
+}
+
+footer a {
+  font-size: 1.125em;
+}
+
+footer .small {
+  font-family: 'FeaturedItem';
+  font-size: 1.125em;
+}
+
+footer p a {
+  font-family: 'FeaturedItem';
+  font-size: 1em;
+}
+
+/* End of Font Family Setup */
+
+/*
+  This section plays with the container classes, setting default values 
+ */
+
+.container {
+  width: 100%;
+}
+
+.main.container {
+  padding: 0;
+  position: relative;
+  border-radius: 0;
+}
+
+.header.container {
+  padding: 0;
+  background: url(../images/carousel_background/England_Carousel.jpg) no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+.header.container.england {
+  padding: 0;
+  background: url(../images/carousel_background/England_Carousel.jpg) no-repeat; 
+  background-size: cover;
+  background-position: top; 
+}
+
+.header.container.hongkong {
+  padding: 0;
+  background: url(../images/carousel_background/HK_Carousel.jpg) no-repeat; 
+  background-size: cover;
+  background-position: top; 
+}
+
+/* End of Container */
+
+
+/*
+  This section plays with the nav class
+
+  The nav is being set to fixed, on the left hand side of the screen with a height of 100%,
+  covering the entire screen. A transistion is added for a nice effect. This is all
+  controlled by JavaScript but the styling is done here.
+
+  It also fixes the close tag as fixed, slightly adjusted away from the nav bar so it looks clean. 
+  A icon is added to the close tag, to add more effect
+
+  All tabs/labels/a are inline-block within the nav bar with text aligned to center. 
+
+  All the panels are fixed and aligned a bit to the right from the first nav bar, they are triggered
+  via CSS selectors but some parts are also controlled using JavaScript. 
+ */
+
+.header.container nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  border: none;
+  font-family: "FeaturedItem";
+  font-size: 1.5em;
+  color: #fff;
+  background-color: #575454;
+  z-index: 200;
+  transition: 0.5s;
+}
+
+.header.container .close.menuHandler {
+  position: fixed;
+  top: 10px;
+  left: 11%;
+  z-index: 1000;
+}
+
+.header.container .close.menuHandler .icon-remove {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  display: inline-block;
+  background: url(../images/icons/iconmonstr-x-mark-1-16.png) no-repeat;
+  background-size: 16px 16px;
+}
+
+.header.container nav .state {
+  position: absolute;
+  left: -10000px;
+}
+
+.header.container .navbar-default {
+  background-image: none;
+}
+
+.header.container nav .tab {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  margin: 0px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.header.container nav label {
+  display: inline-block;
+  border-bottom: 1px solid #3b3738;
+  width: 100%;
+  padding: 10px;
+  margin: 0px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.header.container nav a {
+  display: inline-block;
+  border-bottom: 1px solid #575454;
+  width: 100%;
+  padding: 10px;
+  margin: 0px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.header.container nav #firstTab a {
+  display: inline-block;
+  border-bottom: 1px solid #3b3738;
+  width: 100%;
+  padding: 10px;
+  margin: 0px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#gallery-panel label {
+  border-bottom: 1px solid #575454;
+}
+
+.header.container nav .sideNav {
+  overflow-x: hidden;
+}
+
+section#secondTab.tab-content.nav.panels {
+  visibility: hidden;
+}
+
+#gallery-panel, #aboutme-panel, #contactme-panel {
+  position: fixed;
+  top: 0px;
+  left: 10%;
+  width: 0%;
+  height: 100%;
+  border-radius: 0;
+  z-index: 200;
+  transition: 0.5s;
+  overflow: hidden;
+  visibility: hidden;
+  background-color: #3b3738;
+}
+
+#asia-panel, #europe-panel, #northamerica-panel, #southamerica-panel, #africa-panel {
+  position: fixed;
+  top: 0px;
+  left: 30%;
+  width: 0%;
+  height: 100%;
+  border-radius: 0;
+  z-index: 200;
+  transition: 0.5s;
+  overflow: hidden;
+  visibility: hidden;
+  background-color: #252323;
+}
+
+.header.container nav #aboutme-panel, .header.container nav #contactme-panel {
+  padding: 20px;
+}
+
+.header.container nav #aboutme-panel h1, .header.container nav #contactme-panel h1 {
+  font-family: "MicroExtendFLF-Bold";
+  font-size: 1.125em;
+}
+
+.header.container nav #aboutme-panel p, .header.container nav #contactme-panel p {
+  font-family: "FeaturedItem";
+  font-size: 0.875em;
+}
+
+.header.container nav #home:checked ~ .tab-content.nav.panels #home-panel,
+.header.container nav #gallery:checked ~ .tab-content.nav.panels #gallery-panel,
+.header.container nav #aboutme:checked ~ .tab-content.nav.panels #aboutme-panel,
+.header.container nav #contactme:checked ~ .tab-content.nav.panels #contactme-panel,
+.header.container nav #progress:checked ~ .tab-content.nav.panels #progress-panel,
+.header.container nav #asia:checked ~ .tab-content.nav.panels #asia-panel,
+.header.container nav #europe:checked ~ .tab-content.nav.panels #europe-panel,
+.header.container nav #northamerica:checked ~ .tab-content.nav.panels #northamerica-panel,
+.header.container nav #southamerica:checked ~ .tab-content.nav.panels #southamerica-panel,
+.header.container nav #africa:checked ~ .tab-content.nav.panels #africa-panel {
+  display: block;
+}
+
+.header.container nav a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.header.container .nav.tabs.Content label:hover {
+  background-color: #3b3738;
+}
+
+.header.container .nav a:hover {
+  background-color: #575454;
+}
+
+.header.container nav #first-tab a {
+  background-color: #3b3738;
+}
+
+.header.container nav #firstTab a:hover {
+  background-color: #3b3738;
+}
+
+.header.container nav label:hover {
+  background-color: #575454;
+}
+
+/* End of Nav */
+
+/*
+  This section deals with the containers within the first section of the site.
+
+  container one represents the header which contains the menu and logo information. It 
+  is set as fixed with a logo added with the use of css background property as well as adding
+  some transistional effects to the menu icon for some nice effects. 
+ */
+
+.header.container .container.one {
+  position: fixed;
+  z-index: 100;
+  margin-top: 20px;
+}
+
+.header.container .container.one .logo {
+  text-indent: -9999px;
+  width: 169px;
+  height: 40px;
+  background: url(../images/thumbnails/logo.png) no-repeat;
+}
+
+.header.container .close {
+  opacity: 1;
+  font-weight: normal;
+  color: #fff;
+}
+
+.header.container .icon-menu {
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition: transform .8s ease-in-out;
+}
+
+.header.container .container.one #openMenu:hover {
+  text-decoration: none;
+}
+
+.header.container .container.one #openMenu:hover #menu{
+ text-decoration: none;
+ color: #EFF6EE;
+}
+
+.header.container .container.one #openMenu:hover .icon-menu {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+.header.container #closeMenuHandler:hover {
+  color: #EFF6EE;
+  background-color: inherit;
+}
+
+.header.container .container.one #menu {
+ font-size: 1.5em;
+ margin-left: 5px;
+ color: #fff;
+ text-decoration: none;
+ text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); 
+}
+
+.header.container .container.one .icon-menu {
+  text-indent: -9999px;
+  width: 16px;
+  height: 16px;
+  background: url(../images/icons/iconmonstr-menu-1-16.png) no-repeat;
+  background-size: 16px 16px;
+  display: inline-block;
+}
+
+/* End of Header Container 1 */
+
+/*
+  The second containers within the first section deals with the information content,
+  all default bootstrap properties are being removed and are being set as preferred. 
+  
+  In this section the aligning of elements is being done according to the interface design,
+  and styles are being applied. Keyframes that were declared are now being utilized in some of
+  the areas, for a nice effect for when the site initially loads. 
+
+  Other areas such as the arrows are doing the same thing, they are styled and positioned as well
+  as given their own transition effect 
+ */
+
+.header.container .container.two .page-header {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  border-bottom: none;
+  z-index: 0;
+}
+
+.header.container .container.two h3 {
+  position :relative;
+  margin-top: 20%;
+  margin-bottom: -15px;
+  font-size: 3em;
+  color: #fff;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); 
+  animation: movedown 1s 0.1s ease-in;
+}
+
+.header.container .container.two h1 {
+  position :relative;
+  margin-top: 0px;
+  font-size: 4.5em;
+  color: #fff;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); 
+  animation: movedown 1s 0.1s ease-in;
+}
+
+.header.container .container.two .btn-checkout {
+  position: relative;
+  z-index: 1;
+  font-family: 'FeaturedItem';
+  font-size: 1.875em;
+  margin-top: 5%;
+  margin-bottom: 15%;
+  background: inherit;
+  border: 4px solid #fff;
+  border-radius: 0;
+  line-height: 0;
+  transition: color 0.25s ease;
+  display: inline-block;
+  padding: 20px 50px;
+  color: #fff;
+  text-decoration: none;
+  animation: moveup 1s 0.1s;
+}
+
+.header.container .container.two .btn-checkout:hover {
+  color: #000;
+}
+
+
+.header.container .container.two .btn-checkout::after {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transition: transform 0.25s ease;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  z-index: -1;
+}
+
+.header.container .container.two .btn-checkout:hover::after {
+  transform: scaleY(1);
+}
+
+.header.container .container.two .icon-left-arrow, .header.container .container.two .icon-right-arrow {
+  margin-top: -30%;
+}
+
+.header.container .container.two .icon-left-arrow {
+  text-indent: -9999px;
+  float: left;
+  background: url(../images/misc/left_arrow.png) no-repeat;
+  background-size: 24px 24px;
+  display: block;
+  width: 40px;
+  height: 100%;
+  font-size: 25px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2000;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition: transform .8s ease-in-out;
+}
+
+.header.container .container.two .icon-right-arrow {
+  text-indent: -9999px;
+  float: right;
+  background: url(../images/misc/right_arrow.png) no-repeat;
+  background-size: 24px 24px;
+  display: block;
+  width: 40px;
+  height: 100%;
+  font-size: 25px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2000;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition: transform .8s ease-in-out;
+}
+
+.header.container .container.two .icon-right-arrow:hover, .header.container .container.two .icon-left-arrow:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+.header.container .container.two .margin.bottom.content {
+  margin-bottom: 20%;
+}
+
+/* End of Header Container Section */
+
+/*
+  This section deals with the second section of the site which is the Plans. 
+
+  In this section aligning of elements is being done and any unwanted properties are being removed
+  that was set by bootstrap as default. Images are being added to each of the different contient types
+  as well as adding a 3D transform style for displaying a front and back information panel via the use of
+  hover. 
+ */
+
+.Plans {
+  background-color: #3b3738;
+  color: #fdf3e7;
+}
+
+.Plans h2 {
+  margin-top: 30px;
+  margin-bottom: 0px;
+  font-size: 3em;
+}
+
+.Plans p {
+  margin-bottom: 0px;
+}
+
+.Plans .col-lg-4 {
+  margin-top: 6%;
+}
+
+.Plans .col-lg-12 {
+  margin-top: 6%;
+}
+
+.Plans .row.text-center:last-child {
+  margin-bottom: 30px;
+}
+
+.Plans .continent-icon {
+  width: 150px;
+  height: 150px;
+}
+
+.Plans .continent-icon.asia {
+  background: url(../images/thumbnails/asia.png) no-repeat;
+  background-size: 150px 150px;
+  margin: 0 auto;
+}
+
+.Plans .continent-icon.europe {
+  background: url(../images/thumbnails/europe.png) no-repeat;
+  background-size: 150px 150px;
+  margin: 0 auto;
+}
+
+.Plans .continent-icon.northamer {
+  background: url(../images/thumbnails/northamerica.png) no-repeat;
+  background-size: 150px 150px;
+  margin: 0 auto;
+}
+
+.Plans .continent-icon.southamer {
+  background: url(../images/thumbnails/southamerica.png) no-repeat;
+  background-size: 150px 150px;
+  margin: 0 auto;
+}
+
+.Plans .continent-icon.africa {
+  background: url(../images/thumbnails/africa.png) no-repeat;
+  background-size: 150px 150px;
+  margin: 0 auto;
+}
+
+.Plans p {
+  margin-top: 20px;
+  font-size: 1.875em;
+}
+
+
+.Plans .flip_container {
+  perspective: 1000;
+}
+
+.Plans .flip_info {
+  transform-style: preserve-3d;
+  transition: all 1.0s linear;
+}
+
+.Plans .flip_container:hover .flip_info {
+  transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg); 
+  -webkit-transform: rotateY(180deg);
+}
+
+.Plans .face {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.Plans .face.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg); 
+  -webkit-transform: rotateY(180deg); 
+
+}
+
+.Plans ul li {
+  font-family: "MicroExtendFLF";
+  margin-top: 20px;
+  font-size: 1.5em;
+}
+
+/* End of Header Plans */
+
+/*
+  Here the Albums section is the third section within the site and also the section
+  for other pages. This section sets its display to flex with the flex direction set to row
+  for wrapping each elements as they arrive accordingly, forming a box full of content that is being
+  pushed from the right to left. 
+
+  All item classes are the content that holds each individual album content set to 25% width by default and relative
+  to the parent, so that any other infomration added as a child within the item container can adjust itself within that
+  container.
+
+  All images that are within the gallery are also considered, they are given a transition effect and a opacity is set
+  for informing users that they are hovering over an image as well as giving nice effects. Here the modal is also set
+  to display none so that it is activated by JavaScript. 
+ */
+
+.Albums {
+  background-color: #3b3738;
+  color: #fff;
+}
+
+.Albums .container-fluid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.Albums .item {
+  width: 25%;
+  position: relative;
+}
+
+.Albums .item.info {
+  position: static;
+}
+
+.Albums img {
+  width: 100%;
+  height: 100%;
+}
+
+.Albums h1 {
+  position: absolute;
+  top: 140px;
+  width: 100%;
+  text-align: center;
+}
+
+.Albums h3 {
+  position: absolute;
+  top: 120px;
+  width: 100%;
+  text-align: center;
+}
+
+.Albums h1 {
+  font-size: 1.875em;
+}
+
+.Albums h3 {
+  font-size: 1.25em;
+}
+
+.Albums p {
+  width: 100%;
+  margin-top: 20%;
+  margin-bottom: 20%;
+  font-size: 1.5em;
+  color: #575454;
+}
+
+.flickr-images:hover {
+  transition: all 0.3s;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 50px; 
+  padding-bottom: 50px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.9); 
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.modal-content, #caption {    
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+.gallery-close {
+  position: absolute;
+  top: 7%;
+  right: 15%;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.gallery-close:hover,
+.gallery-close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* End of Albums */
+
+/*
+  The hovereffect properties are declared after the Albums section has been defined, it is essentially
+  setting all the overlay effects for when the user is hovering over the div tags. 
+
+  The hovereffect is first declared, setting default properties, same is applied for the overlay.
+  Then when the item is hovered, the display of those properties are set to show which adds 
+  transistion effects as well as zooming in the content by setting the scale. 
+ */
+
+.hovereffect {
+  width: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.hovereffect:hover .overlay {
+  background-color: rgba(87, 84, 84, 0.7);
+}
+
+.hovereffect a.info {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid #fff;
+  margin: 50px 0 0 0;
+  background-color: transparent;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transform: scale(1.5);
+  transition: all 0.4s ease-in-out;
+  font-weight: normal;
+  height: 50%;
+  width: 85%;
+  position: absolute;
+  top: 5%;
+  left: 8%;
+  padding: 40px;
+  font-size: 1.5em;
+}
+
+.hovereffect:hover a.info {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  transform: scale(1);
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* End of Hover Effect */
+
+/*
+  Here the Info section is the 4th content displayed in the site.
+
+  Here flex is utilized for moving the items in a row wrapped and centering the content, to 
+  display the content nicely. The inital width is 33.3% fitting 3 elements together at a time. 
+  By default they are set to show nothing until JavaScript triggers the event.
+ */
+
+.Info {
+  background-color: #575454;
+  color: #fff;
+}
+
+.Info .container-fluid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16% 0px;
+}
+
+.Info .item.info h3, .Info .item.info h1 {
+  margin-top: 0px;
+  margin-bottom: 0px; 
+}
+
+.Info .item {
+  width: 33.3%;
+  border-right: 1px solid #fff;
+  background-color: #575454;
+}
+
+.Info .item:last-of-type {
+  border: none;
+}
+
+.Info .item.info h1 {
+  margin-top: 10px;
+}
+
+.fades .item.info {
+  opacity: 0;
+}
+
+/* End of Info */
+
+/*
+  Here the footer section is the last section of the site. 
+
+  The following only sets the properties for displaying the footer according to the interface design.
+ */
+
+footer {
+  padding: 5% 0;
+  background-color: #252323;
+}
+
+footer .container .row {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+footer .container .row a, footer .container .row p {
+  margin: 0;
+  color: #fdf3e7;
+}
+
+footer .container .row .btn.instagram span {
+  margin-right: 10px;
+}
+
+footer .container .row p a {
+  color: #575454;
+}
+
+footer .container .row .btn.instagram {
+  background-color: #875c28;
+  padding: 13px 10px;
+}
+
+footer .container .row .btn.instagram:hover {
+  background-color: #875519;
+  transition: all 0.3s;
+}
+
+footer .container .row .social-sprite.instagram {
+  text-indent: -1000px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background: url(../images/icons/iconmonstr-instagram-1-24.png) no-repeat;
+  background-size: 16px 16px;
+}
+
+footer .container .row p {
+  display: inline-block;
+  width: 85.8%;
+  text-align: center;
+}
+
+/* End of Footer */
+
+/*
+  The following is for small devices
+ */
+
+@media (min-width : 200px) and (max-width : 480px) {
+    
+.header.container .container.one {
+  padding: 0 5px;
+}
+
+.header.container .container.one .logo {
+  text-indent: -9999px;
+  width: 150px;
+  height: 30px;
+  background: url(../images/thumbnails/logo.png) no-repeat;
+  background-size: 150px 30px;
+}
+    
+.header.container .container.two {
+  padding: 0px 5px;
+}
+
+.header.container .container.two h3 {
+  margin-top: 35%;
+  margin-bottom: -9px;
+  font-size: 2em;
+}
+
+.header.container .container.two h1 {
+  font-size: 2.5em;
+}
+
+.header.container .container.two .btn-checkout {
+  font-size: 0.938em;
+  padding: 10px 25px;
+}
+
+.header.container .container.two .icon-left-arrow, .header.container .container.two .icon-right-arrow {
+  margin-top: -25%;
+}
+
+.header.container .container.two .icon-left-arrow {
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  margin-top: -3%;
+}
+
+.header.container .container.two .icon-right-arrow {
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  margin-top: -3%;
+}
+
+/* End of Header */
+
+.Plans h2 {
+  font-size: 2.5em;
+}
+
+.Plans .col-lg-3 {
+  margin-top: 20%;
+}
+
+/* End of Plans */
+    
+.Albums .item {
+  width: 100%;
+}
+
+.Albums .item.info {
+  border-right: none;
+}
+
+.Albums h1 {
+  top: 34%;
+}
+
+.Albums h3 {
+  top: 20%;
+}
+
+.Albums h1 {
+  font-size: 2em;
+}
+
+.Albums h3 {
+  font-size: 1.5em;
+}
+    
+.Albums .item.info h1 {
+  margin-top: 10px;
+  margin-bottom: 13%;
+}
+
+.Albums .item.info h3 {
+  margin-top: 19%;
+}
+
+.Albums p {
+  font-size: 1em;
+}
+    
+.Albums {
+  background-color: #3b3738;
+  color: #fff;
+}
+    
+.modal {
+  padding-top: 100px; 
+  padding-bottom: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+}
+
+.modal-content {
+  width: 80%;
+  max-width: 700px;
+}
+
+.gallery-close {
+  top: 7%;
+  right: 1%;
+}
+   
+/* End of Albums */  
+
+.hovereffect a.info {
+  margin: 50px 0 0 0;
+  filter: alpha(opacity=0);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  height: 50%;
+  width: 85%;
+  top: -10%;
+  left: 8%;
+  padding: 20px 0px;
+  font-size: 1.2em;
+}
+
+.hovereffect:hover a.info {
+  -webkit-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+/* End of Hover Effect */
+
+.Info .container-fluid {
+  padding: 0px;
+}
+  
+.Info .item {
+  width: 100%;
+}
+
+.Info .item {
+  border-bottom: 1px solid #fff;
+}
+
+.Info .item.info h1 {
+  margin-bottom: 20%;
+}
+  
+.Info .item.info h3 {
+  margin-top: 20%;
+}
+  
+/* End of Info */
+
+footer .container .row {
+  padding: 0px 5px;
+}
+    
+footer .container .row a {
+  text-align: center;
+  display: block;
+}
+    
+footer .container .row p a {
+  display: inline;
+}
+
+footer .container .row .btn.instagram {
+  padding: 10px 7px;
+}
+
+footer .container .row .social-sprite.instagram {
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+}
+
+footer .container .row p {
+  display: inline-block;
+  margin-top: 5%;
+  text-align: center;
+}
+
+/* End of Footer */
+
+}
+
+/*
+  The following is for medium devices
+ */
+
+@media (min-width : 480px) and (max-width : 1024px) {
+    
+.header.container .container.one {
+  padding: 0 5px;
+}
+
+.header.container .container.one .logo {
+  text-indent: -9999px;
+  width: 150px;
+  height: 30px;
+  background: url(../images/thumbnails/logo.png) no-repeat;
+  background-size: 150px 30px;
+}
+    
+.header.container .container.two {
+  padding: 0px 5px;
+}
+
+.header.container .container.two h3 {
+  margin-top: 35%;
+  font-size: 2.5em;
+}
+
+.header.container .container.two h1 {
+  font-size: 3.5em;
+}
+
+.header.container .container.two .btn-checkout {
+  font-size: 1.3em;
+  padding: 18.5px 37px;
+}
+
+.header.container .container.two .icon-left-arrow, .header.container .container.two .icon-right-arrow {
+  margin-top: -39%;
+}
+
+.header.container .container.two .icon-left-arrow {
+  width: 32px;
+  height: 32px;
+  background-size: 32px 32px;
+}
+
+.header.container .container.two .icon-right-arrow {
+  width: 32px;
+  height: 32px;
+  background-size: 32px 32px;
+}
+
+/* End of Header */
+    
+.Plans h2 {
+  font-size: 2.5em;
+}
+
+.Plans .col-lg-3 {
+  margin-top: 10%;
+}
+
+/* End of Plans */
+    
+.Albums .item {
+  width: 100%;
+}
+
+.Albums .item.info {
+  border-right: none;
+}
+
+.Albums h1 {
+  top: 45%;
+}
+
+.Albums h3 {
+  top: 38%;
+}
+
+.Albums h1 {
+  font-size: 2.3em;
+}
+
+.Albums h3 {
+  font-size: 1.8em;
+}
+    
+.Albums .item.info h1 {
+  margin-top: 10px;
+  margin-bottom: 13%;
+}
+
+.Albums .item.info h3 {
+  margin-top: 19%;
+}
+
+.Albums p {
+  font-size: 1.3em;
+}
+    
+.Albums {
+  background-color: #3b3738;
+  color: #fff;
+}
+    
+.modal {
+  padding-top: 100px; 
+  padding-bottom: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+}
+
+.modal-content {
+  width: 80%;
+  max-width: 700px;
+}
+
+.gallery-close {
+  top: 7%;
+  right: 1%;
+}
+    
+/* End of Albums */ 
+    
+.hovereffect a.info {
+  padding: 50px 0px;
+  font-size: 2em;
+}
+
+
+/* End of Hover Effect */
+  
+.Info .container-fluid {
+  padding: 0px;
+}
+  
+.Info .item {
+  width: 100%;
+}
+
+.Info .item {
+  border-bottom: 1px solid #fff;
+}
+
+.Info .item.info h1 {
+  margin-bottom: 20%;
+}
+  
+.Info .item.info h3 {
+  margin-top: 20%;
+}
+  
+/* End of Info */
+    
+footer .container .row {
+  padding: 0px 5px;
+}
+    
+footer .container .row a {
+  text-align: center;
+  display: block;
+}
+    
+footer .container .row p a {
+  display: inline;
+}
+
+footer .container .row .btn.instagram {
+  padding: 10px 7px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+footer .container .row .social-sprite.instagram {
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+}
+
+footer .container .row p {
+  display: inline-block;
+  margin-top: 1%;
+  width: 100%;
+}
+
+/* End of Footer */
+    
+}
+
+/*
+  The following is for large devices
+ */
+
+@media (min-width : 1024px) and (max-width : 1224px) {
+    
+.header.container .container.two .icon-left-arrow, .header.container .container.two .icon-right-arrow {
+  margin-top: -30%;
+}
+  
+.header.container {
+  background: url(../images/carousel_background/England_Carousel.jpg) no-repeat fixed;
+}
+  
+.header.container.england {
+  background: url(../images/carousel_background/England_Carousel.jpg) no-repeat fixed; 
+}
+
+.header.container.hongkong {
+  background: url(../images/carousel_background/HK_Carousel.jpg) no-repeat fixed; 
+}
+    
+.header.container .container.two .icon-left-arrow, .header.container .container.two .icon-right-arrow {
+  margin-top: -38%;
+}
+
+    
+/* End of Header */
+    
+.Plans h2 {
+  font-size: 2.5em;
+}
+
+.Plans .col-lg-3 {
+  margin-top: 10%;
+}
+    
+/* End of Plans */
+    
+.Albums .item {
+  width: 50%;
+}
+
+.Albums .item.info {
+  border-right: none;
+}
+
+.Albums h1 {
+  top: 40%;
+}
+
+.Albums h3 {
+  top: 32%;
+}
+
+.Albums h1 {
+  font-size: 2em;
+}
+
+.Albums h3 {
+  font-size: 1.5em;
+}
+    
+.Albums .item.info h1 {
+  margin-top: 10px;
+  margin-bottom: 16%;
+}
+
+.Albums .item.info h3 {
+  margin-top: 16%;
+}
+
+.Albums p {
+  font-size: 2em;
+}
+    
+.modal {
+  padding-top: 100px; 
+  padding-bottom: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+}
+
+.modal-content {
+  width: 20%;
+  max-width: 700px;
+}
+
+.gallery-close {
+  top: 7%;
+  right: 1%;
+}
+    
+/* End of Albums */
+    
+footer .container .row .btn.instagram {
+  padding: 10px 9px;
+}
+    
+footer .container .row p {
+  display: inline-block;
+  margin-top: 1%;
+  width: 79.5%;
+  text-align: center;
+}
+    
+/* End of Footer */
+    
+}
+
+/*
+  The following is for extra large devices
+ */
+
+@media (min-width : 1224px) and (max-width : 1824px) {
+      
+.header.container .container.two .icon-left-arrow, .header.container .container.two .icon-right-arrow {
+  margin-top: -35%;
+}
+  
+.header.container {
+  background: url(../images/carousel_background/England_Carousel.jpg) no-repeat fixed;
+  background-size: 100% 100%;
+  background-position: top;
+}
+  
+.header.container.england {
+  background: url(../images/carousel_background/England_Carousel.jpg) no-repeat fixed; 
+  background-size: 100% 100%;
+  background-position: top;
+}
+
+.header.container.hongkong {
+  background: url(../images/carousel_background/HK_Carousel.jpg) no-repeat fixed; 
+  background-size: 100% 100%;
+  background-position: top;
+}
+    
+/* End of Header */
+    
+.Albums .item {
+  width: 33.3%;
+}
+
+.Albums .item.info {
+  border-right: 1px solid #fff;
+}
+
+.Albums h1 {
+  top: 40%;
+}
+
+.Albums h3 {
+  top: 32%;
+}
+
+.Albums h1 {
+  font-size: 2em;
+}
+
+.Albums h3 {
+  font-size: 1.5em;
+}
+    
+.Albums .item.info h1 {
+  margin-top: 10px;
+  margin-bottom: 16%;
+}
+
+.Albums .item.info h3 {
+  margin-top: 16%;
+}
+
+.Albums p {
+  font-size: 2em;
+}
+    
+/* End of Albums */
+    
+footer {
+  padding: 5% 0;
+  background-color: #252323;
+}
+    
+footer .container .row .btn.instagram {
+  padding: 10px 9px;
+}
+    
+footer .container .row p {
+  display: inline-block;
+  margin-top: 1%;
+  width: 79.5%;
+  text-align: center;
+}
+    
+/* End of Footer */
+    
+    
+}
+
+/*
+  The following is for extra extra large devices
+ */
+
+@media (min-width : 1225px) and (max-width : 2560px) {
+    
+.modal {
+  padding-top: 100px; 
+  padding-bottom: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+}
+
+.modal-content {
+  width: 80%;
+}
+
+.gallery-close {
+  top: 7%;
+  right: 1%;
+}
+    
+/* End of Albums */
+       
+.header.container {
+  background: url(../images/carousel_background/England_Carousel.jpg) no-repeat fixed;
+  background-size: 100% 100%;
+  background-position: top;
+}
+    
+.header.container.england {
+  background: url(../images/carousel_background/England_Carousel.jpg) no-repeat fixed; 
+  background-size: 100% 100%;
+  background-position: top;
+}
+
+.header.container.hongkong {
+  background: url(../images/carousel_background/HK_Carousel.jpg) no-repeat fixed; 
+  background-size: 100% 100%;
+  background-position: top;
+}
+    
+}
+
+
+
+
+
+

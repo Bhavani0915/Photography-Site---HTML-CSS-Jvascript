@@ -1,0 +1,41 @@
+/** 
+
+  This file is for declaring all the font face that are to be utilized within the site.
+
+  It features two fonts: 
+    - FeaturedItem with no weights 
+    - MicroExtendFLF with different weights: normal, bold, italic, bold-italic 
+
+**/
+
+
+@font-face {
+  font-family: 'FeaturedItem';
+  src: url('../fonts/FeaturedItem/FeaturedItem.ttf') format('truetype');
+}
+
+/** End of FeaturedItem Font Face **/
+
+@font-face {
+  font-family: 'MicroExtendFLF';
+  src: url('../fonts/MicroExtend/MicroExtendFLF.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'MicroExtendFLF-Bold';
+  src: url('../fonts/MicroExtend/MicroExtendFLF-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'MicroExtendFLF-BoldItalic';
+  src: url('../fonts/MicroExtend/MicroExtendFLF-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'MicroExtendFLF-Italic';
+  src: url('../fonts/MicroExtend/MicroExtendFLF-Italic.ttf') format('truetype');
+}
+
+/* End of MicroExtend Font Face */
+
+
+
+
+
